@@ -41,7 +41,6 @@ gulp.task('buildScripts', function () {
              'node_modules/angular-in-memory*/bundles/*.umd.js',
              'node_modules/rxjs*/*.js',
              'node_modules/rxjs*/**/*.js',
-             'node_modules/@angula*/material/core/theming/prebuilt/deeppurple-amber.css',
              'node_modules/@angula*/**/bundles/*.umd.js'])
     .pipe(gulp.dest('../../dist/VendorScripts'));
 

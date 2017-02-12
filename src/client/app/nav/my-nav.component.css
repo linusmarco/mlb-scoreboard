@@ -1,19 +1,22 @@
-﻿a {
-    display: block;
-    color: white;
+﻿#nav-bar {
+    margin:0;
+    background-color:lightgray;
+}
+
+.nav-link {
+    display:block;
+    width:150px;
+    background-color:lightgray;
+    color: black;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
 
-button {
-    margin: 0 0 0 auto;
-}
-
-.nav-link {
-    color:white;
+.nav-link:hover {
+    background-color:darkgray;
 }
 
 .nav-link.nav-link-active {
-    color:black;
+    background-color:darkgray;
 }
