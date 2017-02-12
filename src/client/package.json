@@ -1,0 +1,65 @@
+{
+
+    "name": "angular-flask-bare",
+    "version": "0.0.1",
+    "description": "Basic 'Hello World' web app built with Angular (2) on the front end and Flask on the back. Meant to be used as a jumping off point for larger apps",
+    "keywords": ["Angular", "Angular 2", "Angular2", "Flask"],
+    "author": { 
+        "name" : "Linus Marco"
+    },
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/linusmarco/angular-flask-bare.git"
+    },
+    "bugs": {
+        "url": "https://github.com/linusmarco/angular-flask-bare/issues"
+    },
+    "homepage": "https://github.com/linusmarco/angular-flask-bare",
+
+    "scripts": {
+        "start": "concurrently \"npm run tsc:w\"",
+        "lite": "lite-server",
+        "tsc": "tsc",
+        "tsc:w": "tsc -w",
+        "gulp": "gulp"
+    },
+    "dependencies": {
+        "@angular/common": "^2.4.1",
+        "@angular/compiler": "^2.4.1",
+        "@angular/core": "^2.4.1",
+        "@angular/forms": "^2.4.1",
+        "@angular/http": "^2.4.1",
+        "@angular/material": "^2.0.0-beta.1",
+        "@angular/platform-browser": "^2.4.1",
+        "@angular/platform-browser-dynamic": "^2.4.1",
+        "@angular/router": "^3.4.1",
+        "angular-in-memory-web-api": "^0.2.2",
+        "core-js": "^2.4.1",
+        "reflect-metadata": "^0.1.8",
+        "rxjs": "5.0.1",
+        "systemjs": "0.19.40",
+        "systemjs-builder": "^0.15.34",
+        "zone.js": "^0.7.4",
+        "hammerjs": "^2.0.6"
+    },
+    "devDependencies": {
+        "gulp": "^3.9.1",
+        "gulp-clean-css": "^2.0.11",
+        "gulp-concat": "^2.6.0",
+        "gulp-sourcemaps": "^1.6.0",
+        "concurrently": "^3.0.0",
+        "lite-server": "^2.2.2",
+        "typescript": "^2.0.3",
+        "canonical-path": "0.0.2",
+        "http-server": "^0.9.0",
+        "tslint": "^3.15.1",
+        "lodash": "^4.16.2",
+        "protractor": "^4.0.9",
+        "rimraf": "^2.5.4",
+        "@types/core-js": "^0.9.34",
+        "@types/node": "^6.0.45",
+        "@types/jasmine": "^2.5.35",
+        "@types/selenium-webdriver": "^2.53.32"
+    }
+}

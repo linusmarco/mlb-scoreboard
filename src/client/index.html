@@ -1,0 +1,21 @@
+<html>
+<head>
+    <base href="/">
+    <title>Sample App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="VendorScripts/@angular/material/core/theming/prebuilt/deeppurple-amber.css" rel="stylesheet">
+    <link rel="stylesheet" href="app.min.css">
+    <script src="VendorScripts/shim.min.js"></script>
+    <script src="VendorScripts/zone.js"></script>
+    <script src="VendorScripts/Reflect.js"></script>
+    <script src="VendorScripts/system.src.js"></script>
+    <script src="systemjs.config.js"></script>
+    <script>
+      System.import('./main').catch(function(err){ console.error(err); });
+    </script>
+</head>
+<body>
+    <my-app class="component prompt"></my-app>
+</body>
+</html>

@@ -1,2 +1,3 @@
-# angular-bare
-A simple "hello world" angular app meant to be used as a foundation for more complex projects.
+# angular-flask-bare
+
+Basic 'Hello World' web app built with Angular (2) on the front end and Flask on the back. Meant to be used as a jumping off point for larger apps.

@@ -1,0 +1,19 @@
+﻿a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+button {
+    margin: 0 0 0 auto;
+}
+
+.nav-link {
+    color:white;
+}
+
+.nav-link.nav-link-active {
+    color:black;
+}
