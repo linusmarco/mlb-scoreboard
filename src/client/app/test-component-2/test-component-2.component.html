@@ -1,1 +1,7 @@
-<div>{{ text }}</div>
+<div *ngIf="ready" class="component-holder">
+    <div class="data-holder-single">
+        <h2>{{ datum.name }}</h2>
+        <p><b>Attribute 1: </b>{{ datum.attr_1 }}</p>
+        <p><b>Attribute 2: </b>{{ datum.attr_2 }}</p>
+    </div>
+</div>

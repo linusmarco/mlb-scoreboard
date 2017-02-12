@@ -8,6 +8,7 @@ import { AppComponent } from './core/app.component';
 import { NavComponent } from './nav/my-nav.component';
 import { TestComponent1 } from './test-component-1/test-component-1.component';
 import { TestComponent2 } from './test-component-2/test-component-2.component';
+import { TestResource } from './services/test-service.service';
 
 @NgModule({
     imports: [
@@ -24,7 +25,7 @@ import { TestComponent2 } from './test-component-2/test-component-2.component';
         TestComponent2
     ],
     providers: [
-        
+        TestResource
     ],
     bootstrap: [AppComponent]
 })
