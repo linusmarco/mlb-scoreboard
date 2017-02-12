@@ -6,7 +6,8 @@ import { HttpModule } from '@angular/http';
 import { routing } from './core/app.routes';
 import { AppComponent } from './core/app.component';
 import { NavComponent } from './nav/my-nav.component';
-import { TestComponent } from './test-component/test-component.component';
+import { TestComponent1 } from './test-component-1/test-component-1.component';
+import { TestComponent2 } from './test-component-2/test-component-2.component';
 
 @NgModule({
     imports: [
@@ -19,7 +20,8 @@ import { TestComponent } from './test-component/test-component.component';
     declarations: [
         AppComponent,
         NavComponent,
-        TestComponent
+        TestComponent1,
+        TestComponent2
     ],
     providers: [
         
