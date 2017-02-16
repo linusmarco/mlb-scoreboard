@@ -6,9 +6,9 @@
 ### Work Plan
 
 #### Version 0.1.0
-- [ ] Set up database
-    + [ ] Initialization script
-    + [ ] Teardown script
+- [x] Set up database
+    + [x] Initialization script
+    + [x] Teardown script
 - [ ] Load historical game log data (Retrosheet)
     + Start with 2016 only
 - [ ] API to serve data
