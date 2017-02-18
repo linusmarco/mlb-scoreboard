@@ -1,13 +1,13 @@
 import psycopg2
-from sqlalchemy import create_engine
 from sqlalchemy_utils import database_exists, create_database, drop_database
 
+import utilities.helpers as hlp
 
 def create_db():
     '''
     Creates app database. If database already exists, drops existing
     '''  
-    engine = create_engine("postgres://localhost/mlb-scoreboard-db")
+    engine = hlp.create_engine()
     if database_exists(engine.url):
         drop_database(engine.url)
         
