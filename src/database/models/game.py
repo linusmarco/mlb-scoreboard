@@ -6,7 +6,7 @@ import datetime
 class Game(Base):
     __tablename__ = 'games'
 
-    Date = Column(Date, primary_key=True, nullable=False, default=datetime.date(0, 1, 1))
+    Date = Column(Date, primary_key=True, nullable=False, default=datetime.date(3000, 1, 1))
 
     DoubleHeader = Column(String(1), primary_key=True, nullable=False)
     DayOfWeek    = Column(String(3), nullable=False)
