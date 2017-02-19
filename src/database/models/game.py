@@ -1,5 +1,6 @@
 from sqlalchemy import *
 from .base import Base
+from ..utilities import helpers as hlp
 
 import datetime
 
@@ -187,9 +188,18 @@ class Game(Base):
     AdditionalInfo  = Column(String(255), nullable=False)
     AcquisitionInfo = Column(String(1), nullable=False)
 
+
+    def setattr(self, attr, val):
+
+        attr_type = getattr(Game, attr).property.columns[0].type
+        val_fmt = hlp.format_val(val, attr_type)
+        
+        setattr(self, attr, val_fmt)
+
+
     def __repr__(self):
        return "<Game(home='%s', away='%s')>" % (
-                self.home, self.visitor)
+                self.HomeTeam, self.VisitingTeam)
 
 
 game_columns = [
