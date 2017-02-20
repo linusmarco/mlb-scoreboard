@@ -9,7 +9,7 @@
 - [x] Set up database
     + [x] Initialization script
     + [x] Teardown script
-- [ ] Load historical game log data (Retrosheet)
+- [x] Load historical game log data (Retrosheet)
     + Start with 2016 only
 - [ ] API to serve data
 - [ ] View to display games by day
