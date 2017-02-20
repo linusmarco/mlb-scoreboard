@@ -9,5 +9,8 @@ bower_components/
 __pycache__/
 *.pyc
 
+# Database
+database/downloads/
+
 # general
 *.log
