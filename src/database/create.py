@@ -1,7 +1,10 @@
 import psycopg2
 from sqlalchemy_utils import database_exists, create_database, drop_database
 
-import utilities.helpers as hlp
+import database.models.base
+import database.models.game
+
+import database.utilities.helpers as hlp
 
 def create_db():
     '''
@@ -13,14 +16,16 @@ def create_db():
         
     create_database(engine.url)
 
+    return engine
 
-def create_tables():
+
+def create_tables(engine):
     '''
     Creates tables in database
     '''
-    Base.metadata.create_all(engine)
+    database.models.base.Base.metadata.create_all(engine)
 
 
 if (__name__ == "__main__"):
-    create_db()
-    create_tables()
+    engine = create_db()
+    create_tables(engine)

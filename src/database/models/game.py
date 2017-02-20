@@ -1,5 +1,6 @@
 from sqlalchemy import *
 from .base import Base
+
 from ..utilities import helpers as hlp
 
 import datetime
@@ -191,7 +192,7 @@ class Game(Base):
 
     def setattr(self, attr, val):
 
-        attr_type = getattr(Game, attr).property.columns[0].type
+        attr_type = str(getattr(Game, attr).property.columns[0].type)
         val_fmt = hlp.format_val(val, attr_type)
         
         setattr(self, attr, val_fmt)

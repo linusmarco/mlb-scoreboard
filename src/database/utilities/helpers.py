@@ -1,11 +1,11 @@
-from sqlalchemy import create_engine
+import sqlalchemy
 
 import datetime
 import re
 
 
 def create_engine():
-    engine = create_engine("postgres://localhost/mlb-scoreboard-db", echo=True)
+    engine = sqlalchemy.create_engine("postgres://localhost/mlb-scoreboard-db", echo=True)
     return engine
 
 
@@ -24,7 +24,7 @@ def format_date(val):
 
 def format_int(val):
     try:
-        assert type(val) in [int, float, long]
+        assert type(val) in [int, float]
         assert round(val) == val
     except: 
         raise ValueError("ERROR: Could not parse int: {}".format(val))
@@ -34,9 +34,9 @@ def format_int(val):
 
 def format_str(val, sql_type):
     try:
-        assert type(val) == str
-        assert re.compile(r"^VARCHAR\(\d+\)$").match(val)
-        assert re.find(r"\d+", val) == len(val)
+        assert(type(val) == str)
+        assert(re.compile(r"^VARCHAR\(\d+\)$").match(sql_type).group(0) == sql_type)
+        assert(int(re.compile(r"\d+").search(sql_type).group(0)) >= len(val))
     except: 
         raise ValueError("ERROR: Could not parse {}: {}".format(sql_type, val))
     else:
@@ -45,13 +45,13 @@ def format_str(val, sql_type):
 
 def format_val(val, sql_type):
 
-    if (attr_type == "DATE"):
+    if (sql_type == "DATE"):
         val_fmt = format_date(val)
 
-    elif (attr_type == "INTEGER"):
+    elif (sql_type == "INTEGER"):
         val_fmt = format_int(val)
 
-    elif (attr_type.startswith("VARCHAR")):
+    elif (sql_type.startswith("VARCHAR")):
         val_fmt = format_str(val, sql_type)
 
     else:
