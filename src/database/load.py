@@ -27,11 +27,20 @@ class MyDialect(csv.Dialect):
     lineterminator = '\n'
 
 
+def load_years(first, last):
+    for y in range(first, last + 1):
+        file = get_logs(y)
+        logs = read_logs(file, game_columns)
+        load_logs(logs)
+
+        print("Lodaed {} game logs".format(y))
+
+
 def get_logs(year):  
     with url.urlopen('http://www.retrosheet.org/gamelogs/gl{}.zip'.format(year)) as r:
         zf = zipfile.ZipFile(BytesIO(r.read()))
 
-        with zf.open("GL2016.TXT") as f:
+        with zf.open("GL{}.TXT".format(year)) as f:
             return f.read()
 
 
@@ -58,7 +67,7 @@ def load_logs(log):
 
         games.append(game)
 
-        print("{} - {} @ {}".format(row['Date'], row['VisitingTeam'], row['HomeTeam']))
+        # print("{} - {} @ {}".format(row['Date'], row['VisitingTeam'], row['HomeTeam']))
 
     session.add_all(games)
     session.commit()
@@ -66,9 +75,7 @@ def load_logs(log):
 
 if (__name__ == "__main__"):
 
-    file = get_logs(2016)
-    log = read_logs(file, game_columns)
-    load_logs(log)
+    load_years(2015, 2015)
 
     
 

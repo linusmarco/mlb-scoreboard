@@ -5,7 +5,7 @@ import re
 
 
 def create_engine():
-    engine = sqlalchemy.create_engine("postgres://localhost/mlb-scoreboard-db", echo=True)
+    engine = sqlalchemy.create_engine("postgres://localhost/mlb-scoreboard-db")
     return engine
 
 
@@ -27,7 +27,10 @@ def format_int(val):
         assert type(val) in [int, float]
         assert round(val) == val
     except: 
-        raise ValueError("ERROR: Could not parse int: {}".format(val))
+        if (type(val) == str and val == ""):
+            return None
+        else:
+            raise ValueError("ERROR: Could not parse int: {}".format(val))
     else:
         return int(val)
 
