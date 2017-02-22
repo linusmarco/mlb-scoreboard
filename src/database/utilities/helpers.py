@@ -23,16 +23,19 @@ def format_date(val):
 
 
 def format_int(val):
-    try:
-        assert type(val) in [int, float]
-        assert round(val) == val
-    except: 
-        if (type(val) == str and val == ""):
-            return None
-        else:
-            raise ValueError("ERROR: Could not parse int: {}".format(val))
-    else:
+    if (type(val) in [int, float]):
         return int(val)
+    elif (type(val) == str):
+        if (re.compile(r"^-?\d*$").match(val)):
+            if (val == ""):
+                return None
+            else:
+                return int(val)
+        else:
+            print("WARNING: Could not parse int: {}. Allowing default.".format(val))
+            return None
+    else:
+        raise ValueError("ERROR: Unrecognized type: {}".format(type(val)))
 
 
 def format_str(val, sql_type):
@@ -41,7 +44,8 @@ def format_str(val, sql_type):
         assert(re.compile(r"^VARCHAR\(\d+\)$").match(sql_type).group(0) == sql_type)
         assert(int(re.compile(r"\d+").search(sql_type).group(0)) >= len(val))
     except: 
-        raise ValueError("ERROR: Could not parse {}: {}".format(sql_type, val))
+        print("WARNING: Could not parse {}: {}. Forcing to string.".format(sql_type, val))
+        return str(val)
     else:
         return val
 

@@ -18,22 +18,13 @@ from io import BytesIO, StringIO
 import zipfile
 
 
-class MyDialect(csv.Dialect):
-    strict = True
-    skipinitialspace = True
-    quoting = csv.QUOTE_NONNUMERIC
-    quotechar = '"'
-    delimiter = ','
-    lineterminator = '\n'
-
-
 def load_years(first, last):
     for y in range(first, last + 1):
         file = get_logs(y)
-        logs = read_logs(file, game_columns)
-        load_logs(logs)
+        logs = read_logs(file)
+        load_logs(logs, game_columns)
 
-        print("Lodaed {} game logs".format(y))
+        print("Loaded {} game logs".format(y))
 
 
 def get_logs(year):  
@@ -44,24 +35,45 @@ def get_logs(year):
             return f.read()
 
 
-def read_logs(log, columns):
+def read_logs(log):
     l = StringIO(log.decode('ascii'))
-    r = csv.DictReader(l, fieldnames=columns, dialect=MyDialect())
-    return r
+    return l.readlines()
 
 
-def load_logs(log):
+def parse_line(line, columns):
+    # if line.endswith("\r\n"):
+    #     line = line[:-2]
+    # elif line.endswith("\n"):
+    #     line = line[:-1]
+
+    # vals = line.split(',')
+
+    # try:
+    #     assert len(vals) == len(columns)
+    # except:
+    #     print(vals)
+    #     assert 0
+
+    # d = {}
+    # for col, val in zip(columns, vals):
+    #     if (val.startswith('"') and val.endswith('"')):
+    #         val = val[1:-1]
+    #     d[col] = val
+
+    d = csv.DictReader(StringIO(line), fieldnames=columns)
+
+    return list(d)[0]
+
+
+def load_logs(log, columns):
     
-    engine = hlp.create_engine()
-    Session = sessionmaker(bind=engine)
-    session = Session()
-
     games = []
     for row in log:
+        l = parse_line(row, columns)
 
         game = Game()
 
-        for key, val in row.items():
+        for key, val in l.items():
             
             game.setattr(key, val)
 
@@ -69,13 +81,16 @@ def load_logs(log):
 
         # print("{} - {} @ {}".format(row['Date'], row['VisitingTeam'], row['HomeTeam']))
 
+    engine = hlp.create_engine()
+    Session = sessionmaker(bind=engine)
+    session = Session()
     session.add_all(games)
     session.commit()
 
 
 if (__name__ == "__main__"):
 
-    load_years(2015, 2015)
+    load_years(1871, 1915)
 
     
 
