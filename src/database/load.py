@@ -21,10 +21,11 @@ import zipfile
 def load_years(first, last):
     for y in range(first, last + 1):
         file = get_logs(y)
-        logs = read_logs(file)
-        load_logs(logs, game_columns)
+        logs = read_logs(file, game_columns)
+        games = prepare_logs(logs)
+        load_games(games)
 
-        print("Loaded {} game logs".format(y))
+        print("Loaded {} ({} games)".format(y, len(games)))
 
 
 def get_logs(year):  
@@ -35,52 +36,23 @@ def get_logs(year):
             return f.read()
 
 
-def read_logs(log):
-    l = StringIO(log.decode('ascii'))
-    return l.readlines()
+def read_logs(log, columns):
+    logs_file = StringIO(log.decode('ascii'))
+    reader = csv.DictReader(logs_file.readlines(), columns)
+    return reader
 
 
-def parse_line(line, columns):
-    # if line.endswith("\r\n"):
-    #     line = line[:-2]
-    # elif line.endswith("\n"):
-    #     line = line[:-1]
-
-    # vals = line.split(',')
-
-    # try:
-    #     assert len(vals) == len(columns)
-    # except:
-    #     print(vals)
-    #     assert 0
-
-    # d = {}
-    # for col, val in zip(columns, vals):
-    #     if (val.startswith('"') and val.endswith('"')):
-    #         val = val[1:-1]
-    #     d[col] = val
-
-    d = csv.DictReader(StringIO(line), fieldnames=columns)
-
-    return list(d)[0]
-
-
-def load_logs(log, columns):
-    
+def prepare_logs(log):
     games = []
     for row in log:
-        l = parse_line(row, columns)
-
         game = Game()
-
-        for key, val in l.items():
-            
+        for key, val in row.items():
             game.setattr(key, val)
-
         games.append(game)
+    return games
 
-        # print("{} - {} @ {}".format(row['Date'], row['VisitingTeam'], row['HomeTeam']))
 
+def load_games(games):
     engine = hlp.create_engine()
     Session = sessionmaker(bind=engine)
     session = Session()
@@ -89,8 +61,7 @@ def load_logs(log, columns):
 
 
 if (__name__ == "__main__"):
-
-    load_years(1871, 1915)
+    load_years(1871, 2016)
 
     
 
