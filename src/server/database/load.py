@@ -5,10 +5,10 @@ import urllib.request as url
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-import database.utilities.helpers as hlp
+import server.database.utilities.helpers as hlp
 
-from database.models.base import Base
-from database.models.game import Game, game_columns
+from server.database.models.base import Base
+from server.database.models.game import Game, game_columns
 
 import datetime
 
@@ -61,7 +61,7 @@ def load_games(games):
 
 
 if (__name__ == "__main__"):
-    load_years(1871, 2016)
+    load_years(1871, 1876)
 
     
 

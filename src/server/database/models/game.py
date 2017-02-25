@@ -1,7 +1,7 @@
 from sqlalchemy import *
 from .base import Base
 
-from ..utilities import helpers as hlp
+from server.database.utilities import helpers as hlp
 
 import datetime
 
