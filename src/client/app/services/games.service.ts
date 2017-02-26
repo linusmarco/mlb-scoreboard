@@ -6,17 +6,10 @@ import 'rxjs/add/operator/toPromise';
 export class TestResource {
     constructor(private _http: Http) { }
 
-    public getData(): Promise<any[]> {
-        return this._http.get('api/data')
+    public getGamesByDate(date:string): Promise<any[]> {
+        return this._http.get('api/games/date/' + date)
             .toPromise()
             .then(response => response.json() as any[])
-            .catch(this.handleError);
-    };
-
-    public getDatum(id: number): Promise<any> {
-        return this._http.get('api/datum/' + id)
-            .toPromise()
-            .then(response => response.json() as any)
             .catch(this.handleError);
     };
 
