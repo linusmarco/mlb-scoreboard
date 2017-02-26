@@ -1,10 +1,8 @@
 <div class="component-holder">
-    <h1>All Data</h1>
     <ng-container *ngIf="ready">
-        <div class="data-holder-list" *ngFor="let d of data">
-            <h3>{{ d.name }}</h3>
-            <p><b>Attribute 1: </b>{{ d.attr_1 }}</p>
-            <p><b>Attribute 2: </b>{{ d.attr_2 }}</p>
+        <h1>Games {{ date.month }}/{{ date.day }}/{{ date.year }}</h1>
+        <div class="data-holder-list" *ngFor="let g of games">
+            <linescore [game]="g"></linescore>
         </div>
     </ng-container>
 </div>
