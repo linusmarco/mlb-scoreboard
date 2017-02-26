@@ -15,6 +15,13 @@ export class GamesService {
 
     protected handleError(error: any) {
         return Promise.reject(error.message || error);
-    }
+    };
 
+    public parseDate(date:string): any {
+        return {
+            day: date.substr(6,2),
+            month: date.substr(4,2),
+            year: date.substr(0,4)
+        }
+    };
 }
