@@ -1,25 +1,20 @@
 import { Routes, RouterModule } from '@angular/router';
 import { ModuleWithProviders } from '@angular/core';
-import { TestComponent1 } from '../test-component-1/test-component-1.component';
-import { TestComponent2 } from '../test-component-2/test-component-2.component';
+import { ScoreboardComponent } from '../scoreboard/scoreboard.component';
 
 const appRoutes: Routes = [
     {
         path: '',
-        redirectTo: 'app/component1',
+        redirectTo: 'app/scoreboard/today',
         pathMatch: 'full'
     },
     {
-        path: 'app/component1',
-        component: TestComponent1
-    },
-    {
-        path: 'app/component2',
-        component: TestComponent2
+        path: 'app/scoreboard/:date',
+        component: ScoreboardComponent
     },
     { 
         path: '**', 
-        redirectTo: 'app/component1',
+        redirectTo: 'app/scoreboard/today',
         pathMatch: 'full'
     } 
 ];
