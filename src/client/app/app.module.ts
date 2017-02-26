@@ -6,9 +6,9 @@ import { HttpModule } from '@angular/http';
 import { routing } from './core/app.routes';
 import { AppComponent } from './core/app.component';
 import { NavComponent } from './nav/my-nav.component';
-import { TestComponent1 } from './test-component-1/test-component-1.component';
-import { TestComponent2 } from './test-component-2/test-component-2.component';
-import { TestResource } from './services/test-service.service';
+import { ScoreboardComponent } from './scoreboard/scoreboard.component';
+import { LineScoreComponent } from './linescore/linescore.component';
+import { GamesService } from './services/games.service';
 
 @NgModule({
     imports: [
@@ -21,11 +21,11 @@ import { TestResource } from './services/test-service.service';
     declarations: [
         AppComponent,
         NavComponent,
-        TestComponent1,
-        TestComponent2
+        ScoreboardComponent,
+        LineScoreComponent
     ],
     providers: [
-        TestResource
+        GamesService
     ],
     bootstrap: [AppComponent]
 })

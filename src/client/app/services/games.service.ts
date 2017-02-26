@@ -3,7 +3,7 @@ import { Http, Headers, Response, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
 @Injectable()
-export class TestResource {
+export class GamesService {
     constructor(private _http: Http) { }
 
     public getGamesByDate(date:string): Promise<any[]> {
