@@ -11,7 +11,7 @@
     + [x] Teardown script
 - [x] Load historical game log data (Retrosheet)
     + Start with 2016 only
-- [ ] API to serve data
+- [x] API to serve data
 - [ ] View to display games by day
     + [ ] Day view
     + [ ] Games service
