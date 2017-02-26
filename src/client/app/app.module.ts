@@ -5,7 +5,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { routing } from './core/app.routes';
 import { AppComponent } from './core/app.component';
-import { NavComponent } from './nav/my-nav.component';
 import { ScoreboardComponent } from './scoreboard/scoreboard.component';
 import { LineScoreComponent } from './linescore/linescore.component';
 import { GamesService } from './services/games.service';
@@ -20,7 +19,6 @@ import { GamesService } from './services/games.service';
     ],
     declarations: [
         AppComponent,
-        NavComponent,
         ScoreboardComponent,
         LineScoreComponent
     ],
