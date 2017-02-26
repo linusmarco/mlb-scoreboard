@@ -1,35 +1,15 @@
 import os
 import json
 
-from app import app
+from server.app import app
 from flask import send_from_directory, redirect, url_for
 
-FAKE_DATA = [
-    {
-        "id" : 0,
-        "name": "Data Element 1",
-        "attr_1": "Value 1",
-        "attr_2": 15
-    },
-    {
-        "id" : 1,
-        "name": "Data Element 2",
-        "attr_1": "Value 2",
-        "attr_2": 14
-    },
-    {
-        "id" : 2,
-        "name": "Data Element 3",
-        "attr_1": "Value 3",
-        "attr_2": 13
-    },
-    {
-        "id" : 3,
-        "name": "Data Element 4",
-        "attr_1": "Value 4",
-        "attr_2": 12
-    }
-]
+from sqlalchemy.orm import sessionmaker
+
+import server.database.utilities.helpers as hlp
+from server.database.models.base import Base
+from server.database.models.game import Game
+
 
 # send app
 @app.route('/app/<path:path>')
@@ -37,24 +17,25 @@ FAKE_DATA = [
 def send_app(path):
     return app.send_static_file('index.html')
 
+
 # main page
 @app.route('/')
 def index():
-    # print(url_for('/app/index'))
     return redirect(url_for('send_app', path="index"))
 
+
 # api
-@app.route('/api/data')
-def send_data():
-    return json.dumps(FAKE_DATA)
+@app.route('/api/games/date/<int:date>')
+def send_games_by_date(date):
+    try:
+        dt = hlp.format_date(str(date))
+    except:
+        return "ERROR: INVALID DATE"
+    else:
+        engine = hlp.create_engine()
+        Session = sessionmaker(bind=engine)
+        session = Session()
+        res = session.query(Game).filter(Game.Date == dt).all()
+        d = [x.to_dict() for x in res]
+        return json.dumps(d)
 
-@app.route('/api/datum/<path:id>')
-def send_datum(id):
-    ids = [d['id'] for d in FAKE_DATA]
-    if id.isdigit():
-        if(int(id) in ids):
-            for d in FAKE_DATA:
-                if (d['id'] == int(id)):
-                    return json.dumps(d)
-
-    return "", 400

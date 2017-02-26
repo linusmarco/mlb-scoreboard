@@ -203,6 +203,12 @@ class Game(Base):
                 self.HomeTeam, self.VisitingTeam)
 
 
+    def to_dict(self):
+        d = {c.name: getattr(self, c.name) for c in self.__table__.columns}
+        d['Date'] = d['Date'].strftime("%Y%m%d")
+        return d
+
+
 game_columns = [
     "Date",
     "DoubleHeader", "DayOfWeek",
