@@ -2,6 +2,7 @@ import sqlalchemy
 
 import datetime
 import re
+import numpy as np
 
 
 def create_engine():
@@ -65,3 +66,28 @@ def format_val(val, sql_type):
         raise ValueError("ERROR: Unrecognized type: {}".format(sql_type))
 
     return val_fmt
+
+
+def parse_linescore(line):
+    arr = []
+    cont = False
+    inn = ""
+    for c in line:
+        if (c == ")"):
+            cont = False
+        elif (c == "("):
+            inn = ""
+            cont = True
+        elif cont:
+            inn = inn + c
+        else:
+            inn = c
+
+        if (cont == False):
+            if (inn == "x"):
+                # arr.append(np.nan)
+                arr.append("X")
+            else:
+                arr.append(int(inn))
+            
+    return arr

@@ -8,7 +8,7 @@ import datetime
 class Game(Base):
     __tablename__ = 'games'
 
-    Date = Column(Date, primary_key=True, nullable=False, default=datetime.date(3000, 1, 1))
+    Date = Column(Date, primary_key=True, index=True, nullable=False, default=datetime.date(3000, 1, 1))
 
     DoubleHeader = Column(String(1), primary_key=True, nullable=False)
     DayOfWeek    = Column(String(3), nullable=False)
@@ -206,6 +206,8 @@ class Game(Base):
     def to_dict(self):
         d = {c.name: getattr(self, c.name) for c in self.__table__.columns}
         d['Date'] = d['Date'].strftime("%Y%m%d")
+        d['VisitorLineScore'] = hlp.parse_linescore(d['VisitorLineScore'])
+        d['HomeLineScore'] = hlp.parse_linescore(d['HomeLineScore'])
         return d
 
 
