@@ -1,3 +1,30 @@
-<div class="component-holder">
-    <p>{{ game.HomeTeam }} vs. {{ game.VisitingTeam }}</p>
+<div class="linescore-holder">
+    <table class="linescore-table">
+        <thead>
+            <tr>
+                <th></th>
+                <th class="inning-header" *ngFor="let inn of game.HomeLineScore; let i = index">{{ i+1 }}</th>
+                <th class="spacer"></th>
+                <th class="inning-header">R</th>
+                <th class="inning-header">H</th>
+                <th class="inning-header">E</th>
+            </tr>
+        </thead>
+        <tr>
+            <td class="team-name">{{ game.VisitingTeam }}</td>
+            <td class="inning-score" *ngFor="let inn of game.VisitorLineScore">{{ inn }}</td>
+            <td class="spacer"></td>
+            <td class="game-score">{{ game.VisitorRunsScored }}</td>
+            <td class="game-hits">{{ game.VisitorH }}</td>
+            <td class="game-errors">{{ game.VisitorE }}</td>
+        </tr>
+        <tr>
+            <td class="team-name">{{ game.HomeTeam }}</td>
+            <td class="inning-score" *ngFor="let inn of game.HomeLineScore">{{ inn }}</td>
+            <td class="spacer"></td>
+            <td class="game-score">{{ game.HomeRunsScored }}</td>
+            <td class="game-hits">{{ game.HomeH }}</td>
+            <td class="game-errors">{{ game.HomeE }}</td>
+        </tr>
+    </table>
 </div>

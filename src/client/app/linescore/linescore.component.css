@@ -1,7 +1,48 @@
-.component-holder {
-    margin:50px;
+.linescore-holder {
+    margin:10px;
+    padding:10px;
+
+    background-color:#006600;
+
+    box-shadow:1px 1px 3px 0px black;
 }
 
-.data-holder-single {
-    
+.linescore-table {
+    border-collapse:separate;
+    border-spacing:8px;
+}
+
+.linescore-table th {
+    text-align:center;
+}
+
+.linescore-table td {
+    padding:6px 5px 5px 6px;
+    box-shadow:inset 1px 1px 3px 0px black;
+
+    background-color:#007000;
+}
+
+.linescore-table td.team-name {
+    text-align:right;
+}
+
+.linescore-table td.inning-score,
+.linescore-table td.game-score,
+.linescore-table td.game-hits,
+.linescore-table td.game-errors {
+    text-align:center;
+    width:20px;
+}
+
+.linescore-table td.game-score,
+.linescore-table td.game-hits,
+.linescore-table td.game-errors {
+    font-weight:bold;
+}
+
+.linescore-table .spacer {
+    width:3px;
+    padding:0;
+    box-shadow:none;
 }

@@ -1,8 +1,10 @@
-<div class="component-holder">
-    <ng-container *ngIf="ready">
-        <h1>Games {{ date.month }}/{{ date.day }}/{{ date.year }}</h1>
-        <div class="data-holder-list" *ngFor="let g of games">
-            <linescore [game]="g"></linescore>
-        </div>
-    </ng-container>
+<div id="scoreboard-holder" *ngIf="ready">
+    <div id="scoreboard-header">
+        <h3>{{ date.month }}/{{ date.day }}/{{ date.year }}</h3>
+    </div>
+    <div id="scoreboard-content">
+        <ng-container *ngFor="let game of games">
+            <linescore [game]="game"></linescore>
+        </ng-container>
+    </div>
 </div>

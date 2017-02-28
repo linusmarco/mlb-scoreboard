@@ -1,7 +1,14 @@
-.component-holder {
+#scoreboard-holder {
     margin:50px;
 }
 
-.data-holder-list {
-    margin-bottom:50px;
+#scoreboard-header {
+    text-align:center;
+}
+
+#scoreboard-content {
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+    justify-content:space-around;
 }
