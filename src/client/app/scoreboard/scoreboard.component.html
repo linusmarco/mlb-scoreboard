@@ -1,10 +1,16 @@
-<div id="scoreboard-holder" *ngIf="ready">
-    <div id="scoreboard-header">
-        <h3>{{ date.month }}/{{ date.day }}/{{ date.year }}</h3>
+<div id="scoreboard-holder">
+    <div id="scoreboard-header" (change)="updateDate(date)">
+        <input type="number" [(ngModel)]="date.month">/
+        <input type="number" [(ngModel)]="date.day">/
+        <input type="number" [(ngModel)]="date.year">
     </div>
-    <div id="scoreboard-content">
+    <div id="scoreboard-content" *ngIf="ready">
         <ng-container *ngFor="let game of games">
             <linescore [game]="game"></linescore>
         </ng-container>
+        <h2 *ngIf="games.length === 0">No games for this date</h2>
+    </div>
+    <div id="scoreboard-content" *ngIf="!ready">
+        <h3>Loading...</h3>
     </div>
 </div>

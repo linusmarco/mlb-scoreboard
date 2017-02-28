@@ -24,4 +24,11 @@ export class GamesService {
             year: date.substr(0,4)
         }
     };
+
+    public unparseDate(date:any): string {
+        let str = date.year.toString();
+        str += ("0" + date.month).substr(-2,2);
+        str += ("0" + date.day).substr(-2,2);
+        return str;
+    };
 }

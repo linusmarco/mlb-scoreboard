@@ -9,16 +9,17 @@ import { GamesService } from "../services/games.service";
     moduleId: module.id
 })
 
-export class ScoreboardComponent implements OnInit {
+export class ScoreboardComponent implements OnInit, OnDestroy {
     date: any;
     games: any[];
     ready: boolean = false;
+    subscriptions = [];
 
     constructor(private _gamesService: GamesService,
                 private _route: ActivatedRoute) { }
 
-    ngOnInit() {
-        let subscr = this._route.params.subscribe(params => {
+    ngOnInit(): void {
+        this.subscriptions.push(this._route.params.subscribe(params => {
             let getDate;
             let reqDate = params['date'];
             if (reqDate === "today") {
@@ -28,11 +29,21 @@ export class ScoreboardComponent implements OnInit {
                 getDate = reqDate;
             }
             this.date = this._gamesService.parseDate(getDate);
-            this._gamesService.getGamesByDate(getDate).then(d => {
-                this.games = d;
-                this.ready = true;
-                subscr.unsubscribe();
-            });
+            this.updateDate(this.date);
+        }));
+    }
+
+    updateDate(date:any): void {
+        this.ready = false;
+        this._gamesService.getGamesByDate(this._gamesService.unparseDate(date)).then(d => {
+            this.games = d;
+            this.ready = true;
+        });
+    }
+
+    ngOnDestroy(): void {
+        this.subscriptions.forEach(x => {
+            x.unsubscribe();
         });
     }
 }
