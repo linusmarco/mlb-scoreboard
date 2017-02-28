@@ -1,9 +1,10 @@
 #scoreboard-holder {
-    margin:50px;
+    margin:20px;
 }
 
 #scoreboard-header {
     text-align:center;
+    margin:20px 20px 10px;
 }
 
 #scoreboard-content {

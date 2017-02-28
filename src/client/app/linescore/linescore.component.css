@@ -41,8 +41,13 @@
     font-weight:bold;
 }
 
+.linescore-table td.game-score {
+    color:#e6e600;
+}
+
 .linescore-table .spacer {
     width:3px;
     padding:0;
     box-shadow:none;
+    visibility:hidden;
 }
