@@ -12,9 +12,9 @@
 - [x] Load historical game log data (Retrosheet)
     + Start with 2016 only
 - [x] API to serve data
-- [ ] View to display games by day
-    + [ ] Day view
-    + [ ] Games service
+- [x] View to display games by day
+    + [x] Day view
+    + [x] Games service
 
 #### Version 0.2.0
 - [ ] Tests
