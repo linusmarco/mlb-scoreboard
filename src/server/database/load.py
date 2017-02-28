@@ -61,7 +61,7 @@ def load_games(games):
 
 
 if (__name__ == "__main__"):
-    load_years(1871, 1876)
+    load_years(1871, 2016)
 
     
 
