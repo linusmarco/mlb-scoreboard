@@ -5,8 +5,25 @@ html, body {
     height:100%;
     margin:0;
     overflow-x:hidden;
+
+    background-color:#994d00;
+    color:white;
 }
 
 body {
     font-family: 'Open Sans', sans-serif;
+}
+
+#header-holder {
+    text-align:center;
+    margin:20px;
+    border-bottom:3px solid white;
+}
+
+#header-holder h1 {
+    margin:10px;
+}
+
+#header-holder h1 span {
+    font-size:1em;
 }
