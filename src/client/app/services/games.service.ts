@@ -6,15 +6,16 @@ import 'rxjs/add/operator/toPromise';
 export class GamesService {
     constructor(private _http: Http) { }
 
+    private handleError(error: any) {
+        return Promise.reject(error.message || error);
+    };
+
     public getGamesByDate(date:string): Promise<any[]> {
         return this._http.get('api/games/date/' + date)
             .toPromise()
             .then(response => response.json() as any[])
-            .catch(this.handleError);
-    };
-
-    protected handleError(error: any) {
-        return Promise.reject(error.message || error);
+            //.catch(this.handleError);
+            .catch(reason => []);
     };
 
     public parseDate(date:string): any {

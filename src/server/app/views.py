@@ -30,7 +30,7 @@ def send_games_by_date(date):
     try:
         dt = hlp.format_date(str(date))
     except:
-        return "ERROR: INVALID DATE"
+        return "ERROR: INVALID DATE", 400
     else:
         engine = hlp.create_engine()
         Session = sessionmaker(bind=engine)
