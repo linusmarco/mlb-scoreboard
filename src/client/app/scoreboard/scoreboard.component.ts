@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
-import { ActivatedRoute }   from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 import { GamesService } from "../services/games.service";
 
@@ -33,9 +33,9 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
         }));
     }
 
-    updateDate(date:any): void {
+    updateDate(): void {
         this.ready = false;
-        this._gamesService.getGamesByDate(this._gamesService.unparseDate(date)).then(d => {
+        this._gamesService.getGamesByDate(this._gamesService.unparseDate(this.date)).then(d => {
             this.games = d;
             this.ready = true;
         });
