@@ -29,7 +29,7 @@ export class ScoreboardComponent implements OnInit, OnDestroy {
                 getDate = reqDate;
             }
             this.date = this._gamesService.parseDate(getDate);
-            this.updateDate(this.date);
+            this.updateDate();
         }));
     }
 
